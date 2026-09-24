@@ -49,7 +49,7 @@ Os nomes estão como marcadores. Troquem pelos nomes completos antes da entrega.
   - avisos semânticos, como orvalho maior que a temperatura.
 - **Na apresentação:** problema, solução e arquitetura.
 
-### [Integrante 2]: ER-03 e ER-04 + AFNε e simulador
+### Gabriel: ER-03 e ER-04 + AFNε e simulador
 
 - **ERs:** ER-03 (vento) e ER-04 (visibilidade).
 - **Arquivos:** `decodmetar/afne/automato.py`, `decodmetar/afne/diagramas.py`, `tests/test_afne.py`.
