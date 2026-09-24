@@ -85,20 +85,9 @@ Os nomes estão como marcadores. Troquem pelos nomes completos antes da entrega.
 
 ### Tarefas de todos
 
-- [ ] **Até 26/09:** preencher a planilha da Etapa 1 (texto sugerido na seção 9.6 do plano).
 - [ ] Escrever a ficha e o AFNε das suas duas ERs e conferir se os testes passam.
 - [ ] Entender todas as 8 ERs: o professor pode perguntar sobre qualquer uma e pedir alterações ao vivo.
 - [ ] Ensaiar a apresentação (10 a 12 minutos).
-
-## Cronograma
-
-| Data | Entrega |
-|------|---------|
-| 26/09 | Planilha da Etapa 1 preenchida |
-| 27/09 | `padroes.py` + casos de teste + `automato.py` prontos |
-| 28/09 | AFNε das 8 ERs passando no teste de equivalência; decodificador e menu funcionando |
-| 29/09 | Documentação, relatório (PDF), slides e ensaio |
-| 30/09 | Entrega no Classroom antes da aula e apresentação |
 
 ## Como executar (quando o código existir)
 
