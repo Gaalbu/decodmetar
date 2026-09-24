@@ -42,7 +42,7 @@ Para um leigo (ou estudante de aviação) ele é ilegível, e um boletim com err
 
 **Linguagem:** Python 3.12 (já instalado: `Python 3.12.3`). **Zero dependências externas** (verificado: `pytest`, `graphviz`, `dot` e `pandoc` **não** estão instalados). Usar só a biblioteca padrão: `re`, `unittest`, `argparse`, `pathlib`, `dataclasses`.
 
-> Se o usuário (Manito) quiser outro tema, a estrutura do plano (módulos, fichas, AFNε, testes) continua valendo; só trocam as ERs.
+> Se a equipe quiser outro tema, a estrutura do plano (módulos, fichas, AFNε, testes) continua valendo; só trocam as ERs.
 
 ---
 
@@ -83,7 +83,7 @@ trabalho_er_metar/
     └── ETAPA1_PLANILHA.md        ← texto pronto para colar na planilha do professor
 ```
 
-Estilo de código: nomes em português (como nos arquivos já existentes do Manito, ex.: `roboEpsilon.py` usa `fecho`, `estados`, `funcao`, `inicial`, `aceitacao`), funções curtas, docstrings curtas, sem excesso de comentários.
+Estilo de código: nomes em português (como nos exercícios anteriores da disciplina, ex.: `roboEpsilon.py` usa `fecho`, `estados`, `funcao`, `inicial`, `aceitacao`), funções curtas, docstrings curtas, sem excesso de comentários.
 
 ---
 
@@ -195,7 +195,7 @@ Cada ficha deve ter uma coluna "motivo" para cada rejeitada (ex.: `242400Z` → 
 Classe `AFNe` com:
 - `estados: set[str]`, `inicial: str`, `finais: set[str]`;
 - `transicoes: dict[str, list[tuple[str, str]]]` → para cada estado, lista de `(rótulo, destino)`. Rótulo é `"ε"` **ou** um símbolo **ou** uma classe finita escrita como no guia (`"[0-9]"`, `"[A-Z]"`, `"[BDINSW]"`). Uma classe é abreviação de união de símbolos (guia, pág. 2), então é legítimo como rótulo — mas documentar isso na legenda do diagrama.
-- `fecho_epsilon(conjunto)` — mesmo algoritmo de pilha do `roboEpsilon.py` do Manito (reaproveitar a ideia).
+- `fecho_epsilon(conjunto)` — mesmo algoritmo de pilha do `roboEpsilon.py` (exercício anterior da disciplina) (reaproveitar a ideia).
 - `aceita(cadeia) -> bool` e `simular(cadeia) -> list[tuple[símbolo, conjunto_de_estados]]` (traço passo a passo, usado na demonstração).
 - Função auxiliar `casa_rotulo(rotulo, simbolo)`: `"[0-9]"` casa dígito, `"[A-Z]"` casa letra maiúscula, `"[XYZ]"` casa se o símbolo está no conjunto, senão compara literal. Implementar o parser de classe só para `[a-b]` e listas simples; nada de `^` negado.
 
@@ -216,7 +216,7 @@ Em `tests/test_afne.py`:
   - `docs/afne/ERxx.md` com bloco ```` ```mermaid ```` `flowchart LR` (GitHub renderiza Mermaid nativamente — resolve "diagrama no repositório" sem instalar nada). Estado inicial com seta de entrada (nó invisível `inicio(( )) --> q0`), finais com círculo duplo (`q9(((q9)))`), arestas ε rotuladas `ε`.
   - `docs/afne/ERxx.dot` (Graphviz) como alternativa, com `rankdir=LR`, `doublecircle` nos finais.
 - Comando: `python main.py --gerar-diagramas`.
-- Para os slides/relatório (PDF), os diagramas podem ser exportados colando o Mermaid em https://mermaid.live ou instalando graphviz (`sudo apt install graphviz` → `dot -Tpng`). Deixar isso escrito no README; **não** instalar nada sem o Manito autorizar.
+- Para os slides/relatório (PDF), os diagramas podem ser exportados colando o Mermaid em https://mermaid.live ou instalando graphviz (`sudo apt install graphviz` → `dot -Tpng`). Deixar isso escrito no README; **não** instalar nada sem autorização do usuário.
 
 ---
 
@@ -301,8 +301,8 @@ METAR SBBR 241200Z 00000KT CAVOK 22/08 Q1018
 
 1. **`docs/EXPRESSOES_REGULARES.md`** — 8 fichas, cada uma com os campos do guia (pág. 4) **e** do enunciado: Identificação (ER-0x, nome, função), Alfabeto Σ, Linguagem L, ER formal, Sintaxe implementada (copiada de `padroes.py`), Explicação dos operadores/equivalências, AFNε (link/embed do Mermaid + tabela de transições + lista de ε-movimentos + inicial + finais), Testes (≥6 aceitas, ≥6 rejeitadas com motivo, limites marcados), Resultado e limitações. Sugestão: gerar a parte "sintaxe implementada" e a tabela de transições automaticamente de `padroes.py` e `definicoes.py` (`python main.py --gerar-docs`), e escrever o texto explicativo à mão.
 2. **`README.md`** — descrição, requisitos (Python ≥ 3.10, nenhuma dependência), como rodar (menu, CLI, testes, diagramas), estrutura de pastas, exemplos de entrada/saída, link para as fichas, **seção "Uso de Inteligência Artificial"** (obrigatória: dizer que IA foi usada no planejamento, geração de código-base e revisão, e que a equipe revisou e entende tudo), referências (ICAO Annex 3 / manual de códigos meteorológicos do DECEA como fonte do formato METAR; docs do módulo `re` do Python; guia do professor).
-3. **`CONTRIBUICOES.md`** — tabela Integrante × tarefas (deixar nomes como `[Integrante 1]` para o Manito preencher). Sugestão de divisão para 4 pessoas: (1) ER-01/02 + decodificador; (2) ER-03/04 + AFNε/simulador; (3) ER-05/06 + testes; (4) ER-07/08 + relatório/slides. Cada integrante apresenta as próprias ERs.
-4. **`docs/RELATORIO_TECNICO.md`** → PDF. Seções: Capa; Introdução e problema; Fundamentação (ER, linguagens regulares, AFNε, equivalência Kleene/Thompson); Metodologia e arquitetura; As 8 fichas (resumidas, referenciando o doc completo); Testes e análise dos resultados (tabela ER × aceitas/rejeitadas × passou, resultado do teste aleatório); Limitações e melhorias (calendário, existência de aeródromos, TAF, grupos RVR/tendência, interface web); Uso de IA; Referências; Contribuições. Conversão para PDF: pandoc não está instalado — gerar no Google Docs/LibreOffice a partir do Markdown, ou pedir ao Manito para instalar pandoc. **Não inventar dados de resultado**: copiar da saída real dos testes.
+3. **`CONTRIBUICOES.md`** — tabela Integrante × tarefas (deixar nomes como `[Integrante 1]` para a equipe preencher). Sugestão de divisão para 4 pessoas: (1) ER-01/02 + decodificador; (2) ER-03/04 + AFNε/simulador; (3) ER-05/06 + testes; (4) ER-07/08 + relatório/slides. Cada integrante apresenta as próprias ERs.
+4. **`docs/RELATORIO_TECNICO.md`** → PDF. Seções: Capa; Introdução e problema; Fundamentação (ER, linguagens regulares, AFNε, equivalência Kleene/Thompson); Metodologia e arquitetura; As 8 fichas (resumidas, referenciando o doc completo); Testes e análise dos resultados (tabela ER × aceitas/rejeitadas × passou, resultado do teste aleatório); Limitações e melhorias (calendário, existência de aeródromos, TAF, grupos RVR/tendência, interface web); Uso de IA; Referências; Contribuições. Conversão para PDF: pandoc não está instalado — gerar no Google Docs/LibreOffice a partir do Markdown, ou pedir ao usuário para instalar o pandoc. **Não inventar dados de resultado**: copiar da saída real dos testes.
 5. **`docs/APRESENTACAO_ROTEIRO.md`** — 10–12 min, ~13 slides:
    1. Título + equipe · 2. Problema (o que é METAR, exemplo ilegível) · 3. Solução e arquitetura (entrada → tokens → ERs → tradução) · 4. Tabela das 8 ERs · 5–7. Fichas destacadas: ER-02 (intervalos numéricos), ER-03 (opcional + {2,3}), ER-05 (união + fecho, a mais rica) com formal × código × AFNε lado a lado · 8. Como garantimos a equivalência (regex × AFNε no mesmo teste) · 9. **Demo ao vivo**: opção 1 com boletim válido, opção 3 com uma cadeia aceita e uma rejeitada mostrando o traço do AFNε · 10. Testes e resultados · 11. Limitações e melhorias · 12. Contribuição de cada integrante · 13. Uso de IA + referências.
    Incluir no roteiro "perguntas prováveis do professor" com respostas: por que `fullmatch`; diferença entre `?` e `*`; como `{2,3}` vira união; por que não usamos `\d`; o que o AFNε faz com ε; mostrar alteração ao vivo (ex.: aceitar pressão até 1100 → mudar ER-08, AFNε e testes).
@@ -321,7 +321,7 @@ METAR SBBR 241200Z 00000KT CAVOK 22/08 Q1018
 7. `main.py` (menu + CLI) e testar manualmente todas as entradas inválidas da seção 6.3.
 8. `dados/*.txt` e rodar `--arquivo` em cada um.
 9. Documentação: fichas, README, CONTRIBUICOES, relatório, roteiro. Salvar `docs/resultado_testes.txt` a partir da execução real.
-10. Checklist final (seção 11). Não fazer `git init`/push nem criar repositório no GitHub sem o Manito pedir; sem trailer `Co-Authored-By` de IA em commits.
+10. Checklist final (seção 11). Não fazer `git init`/push nem criar repositório no GitHub sem o usuário pedir; sem trailer `Co-Authored-By` de IA em commits.
 
 ---
 
