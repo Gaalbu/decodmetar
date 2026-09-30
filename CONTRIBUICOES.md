@@ -22,10 +22,10 @@ Cada integrante é dono de duas ERs do começo ao fim (padrão no código, ficha
 | 24/09/2026 | Gabriel Albuquerque Alencar | Simulador de AFNε (fecho-ε, aceitação, traço) |
 | 24/09/2026 | Gabriel Albuquerque Alencar | AFNε das ER-03/ER-04, teste de equivalência regex × AFNε |
 | 24/09/2026 | Gabriel Albuquerque Alencar | Geração dos diagramas e fichas das ER-03/ER-04 |
-| 30/09/2026 | [preencher] | Padrões, casos e AFNε das ER-01, ER-02, ER-05, ER-06, ER-07 e ER-08 |
-| 30/09/2026 | [preencher] | Decodificador, mensagens e testes do decodificador |
-| 30/09/2026 | [preencher] | `main.py` (menu e linha de comando), dados de exemplo e testes da interface |
-| 30/09/2026 | [preencher] | Fichas das 8 ERs, SVG dos AFNε, relatório técnico e resultado dos testes |
+| 30/09/2026 | Davi Corrêa | Padrões, casos e AFNε das ER-01, ER-02, ER-05, ER-06, ER-07 e ER-08 |
+| 30/09/2026 | Davi Corrêa | Decodificador, mensagens e testes do decodificador |
+| 30/09/2026 | José Valdez | `main.py` (menu e linha de comando), dados de exemplo e testes da interface |
+| 30/09/2026 | Alberto Acosta | Fichas das 8 ERs, SVG dos AFNε, relatório técnico e resultado dos testes |
 
 ## Tarefas de todos
 
