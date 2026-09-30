@@ -1,0 +1,4 @@
+# DecodMETAR usa somente a biblioteca padrão do Python (>= 3.10).
+# Não há nada para instalar com pip.
+#
+# Módulos usados: re, unittest, argparse, dataclasses, pathlib, random, math.

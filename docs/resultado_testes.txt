@@ -1,0 +1,113 @@
+Resultado dos testes do DecodMETAR
+Gerado por: python -m tests.relatorio
+Data: 30/09/2026 09:27
+Python 3.14.7 em Windows 11
+
+1. Casos fixos de cada ficha (tests/casos.py)
+   Cada cadeia passa pelo re.fullmatch e pelo simulador do AFNε.
+
+ER      aceitas  rejeitadas  limites  regex ok  AFNε ok
+ER-01         7           9        4     16/16    16/16
+ER-02         6           9        5     15/15    15/15
+ER-03         7           9        5     16/16    16/16
+ER-04         7           8        4     15/15    15/15
+ER-05        10          10        5     20/20    20/20
+ER-06         8           9        4     17/17    17/17
+ER-07         6           9        4     15/15    15/15
+ER-08         6           9        5     15/15    15/15
+
+   Situação: todas as cadeias com o resultado esperado
+
+2. Equivalência regex x AFNε em cadeias geradas (semente 2026)
+   Aleatórias sobre o alfabeto + mutações a 1 edição + passeios pelo AFNε.
+
+ER      cadeias comparadas   aceitas  divergências
+ER-01               146913      8898             0
+ER-02                46610      6903             0
+ER-03                80776     14222             0
+ER-04                52795      8910             0
+ER-05                85864      2870             0
+ER-06                73962      4272             0
+ER-07                40846      8749             0
+ER-08                24046       200             0
+
+   Situação: nenhuma divergência
+
+3. Saída completa do unittest (python -m unittest discover -s tests -v)
+
+test_afne_nos_casos_fixos (tests.test_afne.TestEquivalencia.test_afne_nos_casos_fixos) ... ok
+test_concorda_com_regex_em_cadeias_aleatorias (tests.test_afne.TestEquivalencia.test_concorda_com_regex_em_cadeias_aleatorias) ... ok
+test_concorda_com_regex_em_mutacoes_das_aceitas (tests.test_afne.TestEquivalencia.test_concorda_com_regex_em_mutacoes_das_aceitas) ... ok
+test_concorda_com_regex_em_passeios_pelo_afne (tests.test_afne.TestEquivalencia.test_concorda_com_regex_em_passeios_pelo_afne) ... ok
+test_todo_padrao_tem_afne (tests.test_afne.TestEquivalencia.test_todo_padrao_tem_afne) ... ok
+test_aceita (tests.test_automato.TestAFNe.test_aceita) ... ok
+test_alfabeto (tests.test_automato.TestAFNe.test_alfabeto) ... ok
+test_estado_inexistente (tests.test_automato.TestAFNe.test_estado_inexistente) ... ok
+test_fecho_epsilon (tests.test_automato.TestAFNe.test_fecho_epsilon) ... ok
+test_rejeita (tests.test_automato.TestAFNe.test_rejeita) ... ok
+test_simulacao_para_no_conjunto_vazio (tests.test_automato.TestAFNe.test_simulacao_para_no_conjunto_vazio) ... ok
+test_traco (tests.test_automato.TestAFNe.test_traco) ... ok
+test_intervalo (tests.test_automato.TestRotulo.test_intervalo) ... ok
+test_intervalo_invertido (tests.test_automato.TestRotulo.test_intervalo_invertido) ... ok
+test_intervalo_misturado (tests.test_automato.TestRotulo.test_intervalo_misturado) ... ok
+test_lista (tests.test_automato.TestRotulo.test_lista) ... ok
+test_literal (tests.test_automato.TestRotulo.test_literal) ... ok
+test_erros_de_arquivo (tests.test_decodificador.TestArquivos.test_erros_de_arquivo) ... ok
+test_exemplos_do_repositorio (tests.test_decodificador.TestArquivos.test_exemplos_do_repositorio) ... ok
+test_linhas_em_branco_e_comentarios (tests.test_decodificador.TestArquivos.test_linhas_em_branco_e_comentarios) ... ok
+test_orvalho_maior_que_temperatura (tests.test_decodificador.TestAvisos.test_orvalho_maior_que_temperatura) ... ok
+test_rajada_menor_que_media (tests.test_decodificador.TestAvisos.test_rajada_menor_que_media) ... ok
+test_boletim_completo (tests.test_decodificador.TestBoletinsValidos.test_boletim_completo) ... ok
+test_campos_extraidos (tests.test_decodificador.TestBoletinsValidos.test_campos_extraidos) ... ok
+test_cavok_e_grupos_ignorados (tests.test_decodificador.TestBoletinsValidos.test_cavok_e_grupos_ignorados) ... ok
+test_cor_igual_final_e_temperatura_negativa (tests.test_decodificador.TestBoletinsValidos.test_cor_igual_final_e_temperatura_negativa) ... ok
+test_espacos_extras_sao_ignorados (tests.test_decodificador.TestBoletinsValidos.test_espacos_extras_sao_ignorados) ... ok
+test_rmk_ignora_o_resto (tests.test_decodificador.TestBoletinsValidos.test_rmk_ignora_o_resto) ... ok
+test_varios_fenomenos_e_camadas (tests.test_decodificador.TestBoletinsValidos.test_varios_fenomenos_e_camadas) ... ok
+test_adivinhar (tests.test_decodificador.TestDiagnostico.test_adivinhar) ... ok
+test_motivos (tests.test_decodificador.TestDiagnostico.test_motivos) ... ok
+test_cabecalho (tests.test_decodificador.TestEntradasInvalidas.test_cabecalho) ... ok
+test_fora_de_ordem (tests.test_decodificador.TestEntradasInvalidas.test_fora_de_ordem) ... ok
+test_grupo_desconhecido (tests.test_decodificador.TestEntradasInvalidas.test_grupo_desconhecido) ... ok
+test_grupo_obrigatorio_faltando (tests.test_decodificador.TestEntradasInvalidas.test_grupo_obrigatorio_faltando) ... ok
+test_grupos_com_valor_fora_da_faixa (tests.test_decodificador.TestEntradasInvalidas.test_grupos_com_valor_fora_da_faixa) ... ok
+test_minusculas (tests.test_decodificador.TestEntradasInvalidas.test_minusculas) ... ok
+test_nao_lanca_excecao_com_lixo (tests.test_decodificador.TestEntradasInvalidas.test_nao_lanca_excecao_com_lixo) ... ok
+test_nuvem_depois_de_cavok (tests.test_decodificador.TestEntradasInvalidas.test_nuvem_depois_de_cavok) ... ok
+test_repetido (tests.test_decodificador.TestEntradasInvalidas.test_repetido) ... ok
+test_vazia (tests.test_decodificador.TestEntradasInvalidas.test_vazia) ... ok
+test_docs_versionados_estao_atualizados (tests.test_diagramas.TestDiagramas.test_docs_versionados_estao_atualizados) ... ok
+test_gerar_escreve_arquivos (tests.test_diagramas.TestDiagramas.test_gerar_escreve_arquivos) ... ok
+test_mermaid_marca_finais_e_classes (tests.test_diagramas.TestDiagramas.test_mermaid_marca_finais_e_classes) ... ok
+test_mermaid_tem_inicial_finais_e_epsilon (tests.test_diagramas.TestDiagramas.test_mermaid_tem_inicial_finais_e_epsilon) ... ok
+test_toda_transicao_aparece_no_diagrama (tests.test_diagramas.TestDiagramas.test_toda_transicao_aparece_no_diagrama) ... ok
+test_cadeias_de_teste_documentadas (tests.test_documentacao.TestFichas.test_cadeias_de_teste_documentadas) ... ok
+test_er_formal_igual_a_do_codigo (tests.test_documentacao.TestFichas.test_er_formal_igual_a_do_codigo) ... ok
+test_resumo_do_afne_confere (tests.test_documentacao.TestFichas.test_resumo_do_afne_confere) ... ok
+test_sintaxe_copiada_do_codigo (tests.test_documentacao.TestFichas.test_sintaxe_copiada_do_codigo) ... ok
+test_tracos_sao_a_saida_real_do_simulador (tests.test_documentacao.TestFichas.test_tracos_sao_a_saida_real_do_simulador) ... ok
+test_uma_ficha_por_er (tests.test_documentacao.TestFichas.test_uma_ficha_por_er) ... ok
+test_arquivo (tests.test_main.TestLinhaDeComando.test_arquivo) ... ok
+test_arquivo_inexistente (tests.test_main.TestLinhaDeComando.test_arquivo_inexistente) ... ok
+test_boletim_invalido (tests.test_main.TestLinhaDeComando.test_boletim_invalido) ... ok
+test_boletim_valido (tests.test_main.TestLinhaDeComando.test_boletim_valido) ... ok
+test_boletim_vazio (tests.test_main.TestLinhaDeComando.test_boletim_vazio) ... ok
+test_listar (tests.test_main.TestLinhaDeComando.test_listar) ... ok
+test_testar (tests.test_main.TestLinhaDeComando.test_testar) ... ok
+test_testar_er_inexistente (tests.test_main.TestLinhaDeComando.test_testar_er_inexistente) ... ok
+test_testar_rejeitada_e_palavra_vazia (tests.test_main.TestLinhaDeComando.test_testar_rejeitada_e_palavra_vazia) ... ok
+test_arquivo_pelo_menu (tests.test_main.TestMenu.test_arquivo_pelo_menu) ... ok
+test_decodificar_pelo_menu (tests.test_main.TestMenu.test_decodificar_pelo_menu) ... ok
+test_fim_da_entrada_sai_sem_erro (tests.test_main.TestMenu.test_fim_da_entrada_sai_sem_erro) ... ok
+test_opcoes_invalidas_nao_travam (tests.test_main.TestMenu.test_opcoes_invalidas_nao_travam) ... ok
+test_testar_pelo_menu (tests.test_main.TestMenu.test_testar_pelo_menu) ... ok
+test_aceitas (tests.test_padroes.TestPadroes.test_aceitas) ... ok
+test_limites_estao_nos_casos (tests.test_padroes.TestPadroes.test_limites_estao_nos_casos) ... ok
+test_quantidade_minima_de_casos (tests.test_padroes.TestPadroes.test_quantidade_minima_de_casos) ... ok
+test_rejeitadas (tests.test_padroes.TestPadroes.test_rejeitadas) ... ok
+test_todo_padrao_tem_casos (tests.test_padroes.TestPadroes.test_todo_padrao_tem_casos) ... ok
+
+----------------------------------------------------------------------
+Ran 71 tests in 3.960s
+
+OK

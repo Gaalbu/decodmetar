@@ -101,7 +101,8 @@ class AFNe:
         passos = self.simular(cadeia)
         linhas = [f"início: {formatar_conjunto(passos[0][1])}"]
         for simbolo, estados in passos[1:]:
-            linhas.append(f"--{simbolo}--> {formatar_conjunto(estados)}")
+            exibido = "␣" if simbolo == " " else simbolo
+            linhas.append(f"lê '{exibido}' → {formatar_conjunto(estados)}")
         veredito = "ACEITA" if self.aceita(cadeia) else "REJEITADA"
         linhas.append(f"resultado: {veredito}")
         return "\n".join(linhas)

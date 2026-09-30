@@ -1,4 +1,4 @@
-"""Gera os diagramas dos AFNε (Mermaid e Graphviz) a partir das definições.
+"""Gera os diagramas dos AFNε (Mermaid) e as tabelas de transição a partir das definições.
 
 Uso: python -m decodmetar.afne.diagramas [pasta_de_saida]
 """
@@ -13,6 +13,11 @@ from decodmetar.padroes import PADROES
 PASTA_PADRAO = Path(__file__).resolve().parents[2] / "docs" / "afne"
 
 
+def exibir(rotulo):
+    """Rótulo como aparece no diagrama: o espaço vira ␣ para ficar visível."""
+    return "␣" if rotulo == " " else rotulo
+
+
 def _arestas(afne):
     """Agrupa símbolos com mesma origem e destino (q0 --a, b--> q1).
 
@@ -22,7 +27,7 @@ def _arestas(afne):
     for origem in afne.estados:
         for rotulo, destino in afne.transicoes[origem]:
             chave = (origem, destino, rotulo == EPSILON)
-            agrupadas.setdefault(chave, []).append(rotulo)
+            agrupadas.setdefault(chave, []).append(exibir(rotulo))
     return [(o, d, ", ".join(r)) for (o, d, _), r in agrupadas.items()]
 
 
@@ -41,29 +46,12 @@ def mermaid(afne):
     return "\n".join(linhas)
 
 
-def graphviz(afne):
-    linhas = [
-        f'digraph "{afne.nome}" {{',
-        "    rankdir=LR;",
-        '    inicio [shape=point, style=invis];',
-    ]
-    for estado in afne.estados:
-        forma = "doublecircle" if estado in afne.finais else "circle"
-        linhas.append(f"    {estado} [shape={forma}];")
-    linhas.append(f"    inicio -> {afne.inicial};")
-    for origem, destino, rotulo in _arestas(afne):
-        estilo = ", style=dashed" if rotulo == EPSILON else ""
-        linhas.append(f'    {origem} -> {destino} [label="{rotulo}"{estilo}];')
-    linhas.append("}")
-    return "\n".join(linhas) + "\n"
-
-
 def tabela_transicoes(afne):
     linhas = ["| Estado | Símbolo | Destino |", "|---|---|---|"]
     for origem in afne.estados:
         marca = ("→ " if origem == afne.inicial else "") + ("* " if origem in afne.finais else "")
         for rotulo, destino in afne.transicoes[origem]:
-            linhas.append(f"| {marca}{origem} | `{rotulo}` | {destino} |")
+            linhas.append(f"| {marca}{origem} | `{exibir(rotulo)}` | {destino} |")
     return "\n".join(linhas)
 
 
@@ -86,11 +74,13 @@ Padrão no código: `{er.padrao}`
 
 Legenda: setas tracejadas são movimentos ε; círculo duplo é estado final.
 Rótulos como `[0-9]` são classes finitas, abreviação da união dos símbolos
-(ex.: `[0-2]` = `0 | 1 | 2`).
+(ex.: `[0-2]` = `0 | 1 | 2`). O símbolo `␣` representa o espaço.
 
 ```mermaid
 {mermaid(afne)}
 ```
+
+O mesmo diagrama em imagem: [`{afne.nome}.svg`]({afne.nome}.svg) (exportada do Mermaid acima).
 
 ## Tabela de transições
 
@@ -105,10 +95,9 @@ def gerar(pasta=PASTA_PADRAO):
     pasta.mkdir(parents=True, exist_ok=True)
     gerados = []
     for nome, afne in AFNES.items():
-        for extensao, conteudo in [(".md", documento(afne)), (".dot", graphviz(afne))]:
-            caminho = pasta / f"{nome}{extensao}"
-            caminho.write_text(conteudo, encoding="utf-8")
-            gerados.append(caminho)
+        caminho = pasta / f"{nome}.md"
+        caminho.write_text(documento(afne), encoding="utf-8")
+        gerados.append(caminho)
     return gerados
 
 
