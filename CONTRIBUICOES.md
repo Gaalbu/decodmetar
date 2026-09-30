@@ -1,7 +1,5 @@
 # Contribuições dos integrantes
 
-> **Antes da entrega:** preencham as linhas `[preencher]` do registro e ajustem a tabela ao que cada um realmente fez. O histórico do Git (`git log --format="%an %ad %s" --date=short`) serve de evidência.
-
 ## Divisão por frente
 
 Cada integrante é dono de duas ERs do começo ao fim (padrão no código, ficha, AFNε, testes e a parte dessas ERs nos slides) e de uma parte da aplicação ou da documentação.
@@ -26,12 +24,6 @@ Cada integrante é dono de duas ERs do começo ao fim (padrão no código, ficha
 | 30/09/2026 | Davi Corrêa | Decodificador, mensagens e testes do decodificador |
 | 30/09/2026 | José Valdez | `main.py` (menu e linha de comando), dados de exemplo e testes da interface |
 | 30/09/2026 | Alberto Acosta | Fichas das 8 ERs, SVG dos AFNε, relatório técnico e resultado dos testes |
-
-## Tarefas de todos
-
-- [ ] Cada um revisou a ficha e o AFNε das suas duas ERs e rodou os testes.
-- [ ] Todos entendem as 8 ERs (o professor pode perguntar sobre qualquer uma e pedir alterações ao vivo).
-- [ ] Apresentação ensaiada (10 a 12 minutos).
 
 ## Uso de Inteligência Artificial
 
